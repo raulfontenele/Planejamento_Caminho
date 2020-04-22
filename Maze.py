@@ -24,7 +24,7 @@ class Maze:
         screen.fill((255,255,255))
         return screen
         
-    def draw(self, path):
+    def draw(self, path, result):
 
         background = pygame.Surface((self.windowWidth,self.windowHeight))
         background.fill((0,0,0))
@@ -33,9 +33,9 @@ class Maze:
                 if self.maze[ row ][column] == 0:
                     pygame.draw.rect(background,(255,255,255),(column*self.squareSize,row*self.squareSize,self.squareSize,self.squareSize))
 
-        
-        for coor in path:
-            pygame.draw.rect(background,(255,0,0),(coor[1]*self.squareSize,coor[0]*self.squareSize,self.squareSize,self.squareSize))
+        if result == True:
+            for coor in path:
+                pygame.draw.rect(background,(255,0,0),(coor[1]*self.squareSize,coor[0]*self.squareSize,self.squareSize,self.squareSize))
         
         self.screen.blit(background,(0,0))
 
@@ -52,5 +52,4 @@ class Maze:
         pygame.quit()
 
      
-
 

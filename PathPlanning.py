@@ -42,6 +42,13 @@ class PathPlanning:
             neighbor.append( Node([coorX,coorY - 1]) ) 
 
         return neighbor
+    
+    def validateNeighborhood(self,neighborhood):
+        validList = []
+        for neighbor in neighborhood:
+            if self.checkCloseList(neighbor) == False:
+                validList.append(neighbor)
+        return validList
 
 
     def AStarAlgorithm(self):
@@ -78,6 +85,47 @@ class PathPlanning:
             if len(self.openList) == 0:
                 print("deu merda")
                 break
+
+        route = []
+
+        ## Mostrar a rota
+        while node_current != None:
+            route.append(node_current.coord)
+            print(node_current.coord)
+            node_current = node_current.parent
+
+        return route
+
+    def DepthFirstSearch(self):
+
+        node_current = self.node_start
+
+        while True:
+                
+            if node_current.coord == self.node_goal.coord:
+                break
+            
+            if self.checkCloseList(node_current) == False:
+                self.closeList.append(node_current)
+
+            neighborPossible = self.findNeighborhood(node_current)
+            neighborhood = self.validateNeighborhood(neighborPossible)
+            
+            if len(neighborhood) > 0:
+                next_node = neighborhood[0]
+            else :
+                next_node = None
+
+            if next_node == None and (node_current.coord != self.closeList[0].coord):
+                node_current = node_current.parent
+            
+            elif next_node == None and (node_current.coord == self.closeList[0].coord):
+                print("Não foi possível determinar uma rota válida!")
+                return 0
+
+            else:
+                next_node.parent = node_current
+                node_current = next_node
 
         route = []
 

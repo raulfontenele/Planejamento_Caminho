@@ -6,21 +6,23 @@ from Maze import Maze
 
 
 def main():
+    lenX = 125
+    lenY = 125
 
-    _maze = MazeGenerator([31,31])
-    _maze.construct()
+    _maze = MazeGenerator([lenX,lenY])
+    _maze.constructNotRecursion()
     maze = txtToMatrix("mazeTxt.txt")
     
     node_start = Node([0,1])
     node_start.gcost = 0
 
-    node_goal = Node([30,29])
+    node_goal = Node([lenX-1,lenY-2])
 
     path = PathPlanning(maze,node_start,node_goal)
-    route = path.AStarAlgorithm()
+    route = path.DepthFirstSearch()
 
     desenho = Maze(txtToMatrix("mazeTxt.txt"))
-    desenho.draw(route)
+    desenho.draw(route,True)
 
 
     

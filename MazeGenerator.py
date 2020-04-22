@@ -64,7 +64,7 @@ class MazeGenerator:
         self.maze[2*coorX+1][2*coorY+1] = 0
 
  
-    def construct(self, cell_current = None):
+    def constructRecursion(self, cell_current = None):
 
         if cell_current == None:
             cell_current = self.cell_start
@@ -90,6 +90,35 @@ class MazeGenerator:
         else:
             neighbor.parent = cell_current
             self.construct(neighbor)
+
+    def constructNotRecursion(self, cell_current = None):
+
+        while True:
+
+            if cell_current == None:
+                cell_current = self.cell_start
+
+            if cell_current.coord == self.cell_goal.coord:
+                cell_current.wall[1] = 0
+
+            self.changeWall(cell_current)
+            
+            if self.checkVisited(cell_current.coord) == False:
+                self.visitedList.append(cell_current)
+
+
+            neighbor = self.findNeighbor(cell_current)
+            
+            if neighbor == None and (cell_current.coord != self.visitedList[0].coord):
+                cell_current = cell_current.parent
+            
+            elif neighbor == None and (cell_current.coord == self.visitedList[0].coord):
+                self.transfToList()
+                return self.maze
+
+            else:
+                neighbor.parent = cell_current
+                cell_current = neighbor
 
 
 
