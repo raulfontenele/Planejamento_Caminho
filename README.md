@@ -11,6 +11,9 @@ Foram implementados algoritmos capazes de gerar labirintos de forma aleatória, 
 ### Criação dos labirintos
 Para a criação dos labirintos, foi utilizado uma versão randômica do algoritmo Depth First Search. Foram implementadas duas versões desse algoritmo, onde uma usava recursividade e a outra não. A criação da versão não recursiva se tornou necessária para criar labirintos de dimensões maiores, em relação a versão recursiva, sem que o limite de recursividade da linguagem seja ultrapassado. 
 
+### Drawing
+Arquivo que permite a criação de labirintos de forma manual, escolhendo livremente as coordenadas onde estarão presentes as paredes, as coordenadas iniciais e de objetivo. As dimensões podem ser escolhidas livremente, porém devem ser ímpares caso se deseje utilizaram os algoritmos de busca para a resolução dos mesmos. Como produto gerado pelo código estão uma imagem e um arquivo .txt com a respectiva representação.
+
 ### Busca de caminho
 Para resolver os labirintos propostos, foram implementados dois algoritmos de busca, o Depth First Search e o A*. O algoritmo A* é um algoritmo de busca de menor camminho entre dois pontos e por isso uma saída viável para a resolução do problema, porém como há apenas uma solução para o labirinto, o algoritmo de Depth First Search se mostra funcional para a resolução do problema.
 
