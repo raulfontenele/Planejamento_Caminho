@@ -6,8 +6,8 @@ from Maze import Maze
 
 
 def main():
-    lenX = 125
-    lenY = 125
+    lenX = 101
+    lenY = 101
 
     _maze = MazeGenerator([lenX,lenY])
     _maze.constructNotRecursion()
@@ -22,7 +22,7 @@ def main():
     route = path.DepthFirstSearch()
 
     desenho = Maze(txtToMatrix("mazeTxt.txt"))
-    desenho.draw(route,True)
+    desenho.draw(route,False)
 
 
     
