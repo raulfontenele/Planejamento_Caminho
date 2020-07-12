@@ -81,7 +81,7 @@ class MazeGenerator:
         neighbor = self.findNeighbor(cell_current)
         
         if neighbor == None and (cell_current.coord != self.visitedList[0].coord):
-            self.construct(cell_current.parent)
+            self.constructRecursion(cell_current.parent)
         
         elif neighbor == None and (cell_current.coord == self.visitedList[0].coord):
             self.transfToList()
@@ -89,7 +89,7 @@ class MazeGenerator:
 
         else:
             neighbor.parent = cell_current
-            self.construct(neighbor)
+            self.constructRecursion(neighbor)
 
     def constructNotRecursion(self, cell_current = None):
 
